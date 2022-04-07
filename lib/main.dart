@@ -40,7 +40,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   var rawCode = "";
+
+  String state = "start";
+
   void _handleKeyEvent(RawKeyEvent event) {
+    if(state == "start"){
+      state = "scan";
+      Future.delayed(const Duration(milliseconds: 500),(){
+        setState(() {
+          _message = "$_message$rawCode\n";
+        });
+        rawCode = "";
+        state = "start";
+      });
+    }
+
     if (event is RawKeyDownEvent) {
       setState(() {
         if (event.physicalKey != PhysicalKeyboardKey.enter) {
@@ -52,8 +66,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           }
         } else {
           /* Here we write the api*/
-          _message = "$_message$rawCode\n";
-          rawCode = "";
+
         }
       });
     }
