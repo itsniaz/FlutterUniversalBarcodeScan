@@ -48,8 +48,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             _message = "";
           }else{
             rawCode = "$rawCode${event.character}";
+            print("KeyPressed : ${event.character}");
           }
         } else {
+          /* Here we write the api*/
           _message = "$_message$rawCode\n";
           rawCode = "";
         }
