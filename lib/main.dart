@@ -58,15 +58,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     if (event is RawKeyDownEvent) {
       setState(() {
         if (event.physicalKey != PhysicalKeyboardKey.enter) {
-          if (event.physicalKey == PhysicalKeyboardKey.backspace) {
-            _message = "";
-          }else{
             rawCode = "$rawCode${event.character}";
             print("KeyPressed : ${event.character}");
-          }
-        } else {
-          /* Here we write the api*/
-
         }
       });
     }
