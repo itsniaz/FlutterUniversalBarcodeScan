@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:keyboard_press_test/scan_state.dart';
 
 void main() => runApp(const MyApp());
 
@@ -41,17 +42,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   var rawCode = "";
 
-  String state = "start";
+  ScanState scanState = ScanState.start;
 
   void _handleKeyEvent(RawKeyEvent event) {
-    if(state == "start"){
-      state = "scan";
-      Future.delayed(const Duration(milliseconds: 500),(){
+    if(scanState == ScanState.start){
+      scanState = ScanState.scanInProgress;
+      Future.delayed(const Duration(milliseconds: 800),(){
         setState(() {
           _message = "$_message$rawCode\n";
         });
         rawCode = "";
-        state = "start";
+        scanState = ScanState.start;
       });
     }
 

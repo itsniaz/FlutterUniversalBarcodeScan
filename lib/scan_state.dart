@@ -1,0 +1,4 @@
+enum ScanState{
+  start,
+  scanInProgress
+}
